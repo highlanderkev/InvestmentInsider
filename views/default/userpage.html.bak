@@ -1,0 +1,26 @@
+{{left_sidebar_enabled=True}}
+{{right_sidebar_enabled=True}}
+{{extend 'layout.html'}}
+<h1><a href="#" class="btn bnt-large btn-primary"><i class="icon icon-user"></i></a> {{=user.first_name + ' ' + user.last_name}}</h1>
+{{if len(posts):}}
+    {{for post in posts:}}
+    <div class="well well-small">
+        <blockquote>
+            {{=post.body}}
+        </blockquote>
+        <center>
+            {{=A(TAG.i(_class="icon icon-file icon-white"), ' See Post', _href=URL('default','stock', args=post.stock_id), _class="btn btn-small")}}
+        </center>
+    </div>
+    {{pass}}
+{{pass}}
+
+{{block left_sidebar}}
+<h2>Active Users</h2>
+{{=LOAD('default','active_users.load', ajax=True)}}
+{{end}}
+
+{{block right_sidebar}}
+<h2>Trending Stocks</h2>
+{{=LOAD('default','trending_stocks.load', ajax=True)}}
+{{end}}

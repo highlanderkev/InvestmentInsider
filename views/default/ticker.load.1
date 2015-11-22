@@ -1,0 +1,17 @@
+<center>
+{{for x, tick in enumerate(stock_ticks):}}
+    {{if x==ticker_items: break}}
+    {{if tick.price_change:}}
+        {{if '+' in tick.price_change:}}
+    {{=A(tick.symbol, _href=URL('default','stock.html', args=tick.id))}} $ <a href="#" id="{{=tick.symbol}}" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="{{=tick.price_change.translate(None, '""')}} {{=tick.price_change_percent.translate(None, '"N/A-+"')}}" class="green-tooltip"><span class="text-success">{{=tick.last_trade_price}}</span></a> &nbsp;
+        {{else:}}
+    {{=A(tick.symbol, _href=URL('default','stock.html', args=tick.id))}} $ <a href="#" id="{{=tick.symbol}}" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="{{=tick.price_change.translate(None, '""')}} {{=tick.price_change_percent.translate(None, '"N/A-+"')}}" class="red-tooltip"><span class="text-error">{{=tick.last_trade_price}}</span></a> &nbsp;
+        {{pass}}
+    {{else:}}
+        {{=A(tick.symbol, _href=URL('default','stock.html', args=tick.id))}} $ 0.00 &nbsp;
+    {{pass}}
+<script>
+    $('#{{=tick.symbol}}').tooltip()
+</script>
+{{pass}}
+</center>

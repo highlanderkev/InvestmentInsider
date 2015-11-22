@@ -1,0 +1,29 @@
+{{if auth.user:}}
+    {{if voted==True:}}
+        {{=A(TAG.i(_class='icon-thumbs-up icon-white'), _href="#", _class='btn btn-small btn-info disabled')}}
+        {{if votes:}}
+            Votes <span class="badge">{{=votes}}</span>
+            <hr />
+        {{else:}}
+            Votes <span class="badge">0</span>
+            <hr />
+        {{pass}}
+    {{elif voted==False:}}
+        {{=A(TAG.i(_class='icon-thumbs-up icon-white'), _href=URL('default','vote', args=[post_id, 1]), _class='btn btn-small btn-info', cid=request.cid)}}
+        {{if votes:}}
+            Votes <span class="badge">{{=votes}}</span>
+            <hr />
+        {{else:}}
+            Votes <span class="badge">0</span>
+            <hr />
+        {{pass}}
+    {{pass}}
+{{else:}}
+    {{if votes:}}
+        Votes <span class="badge">{{=votes}}</span>
+        <hr />
+    {{else:}}
+        Votes <span class="badge">0</span>
+        <hr />
+    {{pass}}
+{{pass}}

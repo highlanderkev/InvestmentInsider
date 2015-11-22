@@ -1,0 +1,22 @@
+/* Custom.css Styles by Kevin Westropp */
+
+#default-flash {
+    right:390px;
+    margin-top:10px;
+    margin-bottom:10px;
+    background-color:#f8f8f8;
+    color: #666;
+    background-image: -webkit-linear-gradient(top,#f8f8f8,#f8f8f8);
+    background-image: -o-linear-gradient(top,#f8f8f8,#f8f8f8);
+    background-image: -moz-linear-gradient(90deg, #f8f8f8,#f8f8f8);
+    background-image: linear-gradient(top,#f8f8f8,#f8f8f8);
+}
+
+
+.green-tooltip + .tooltip > .tooltip-inner {
+    background-color: #0fc;
+}
+
+.red-tooltip + .tooltip > .tooltip-inner {
+    background-color: #f00;
+}

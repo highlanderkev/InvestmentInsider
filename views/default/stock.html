@@ -1,0 +1,42 @@
+{{extend 'layout.html'}}
+<div class="well well-small">
+    {{if stock.last_trade_price:}}
+        {{if stock.price_change and '+' in stock.price_change:}}
+            <h2>{{=stock.symbol}}  <span class="muted">$</span> <span class="text-info">{{=stock.last_trade_price}}</span>  <span class="text-success">{{=stock.price_change.translate(None, '""')}}  {{=stock.price_change_percent.translate(None, '"NA+-"')}}</span></h2>
+        {{else:}}
+            <h2>{{=stock.symbol}}  <span class="muted">$</span> <span class="text-info">{{=stock.last_trade_price}}</span>  <span class="text-error">{{=stock.price_change.translate(None, '""')}}  {{=stock.price_change_percent.translate(None, '"NA+-"')}}</span></h2>
+        {{pass}}
+    {{else:}}
+            <h2>{{=stock.symbol}} <span class="muted">None</span></h2>
+    {{pass}}
+        {{if stock.security_name and '-' in stock.security_name:}}
+            <h3>{{=stock.security_name.split('-')[0]}}</h3>
+            <h3 class="muted">{{=stock.security_name.split('-')[1]}}</h3>
+            <h4 class="text-info">{{=market.title}}</h4>
+        {{else:}}
+            <h3>{{=stock.security_name}}</h3>
+            <h4 class="text-info">{{=market.title}}</h4>
+        {{pass}}
+    <table class="table table-condensed">
+        <tr>
+            <td class="muted">Mkt Cap:</td><td><strong>{{=stock.market_cap}}</strong></td><td class="muted">Volume:</td><td><strong>{{=stock.volume}}</strong></td><td class="muted">Avg Vol:</td><td><strong>{{=stock.average_daily_volume}}</strong></td>
+        </tr>
+        <tr>
+            <td class="muted">Prev Close:</td><td><strong>{{=stock.previous_close}}</strong></td><td class="muted">Day's Range:</td><td><strong>{{=stock.todays_range}}</strong></td><td class="muted">Open:</td><td><strong>{{=stock.today_open}}</strong></td>
+        </tr>
+        <tr>
+            <td class="muted">Low:</td><td><strong>{{=stock.todays_low}}</strong></td><td class="muted">High:</td><td><strong>{{=stock.todays_high}}</strong></td><td class="muted">P/E:</td><td><strong>{{=stock.pe}}</strong></td>
+        </tr>
+        <tr>
+            <td class="muted">52 Wk High:</td><td><strong>{{=stock.fif_week_high}}</strong></td><td class="muted">52 Wk Low:</td><td><strong>{{=stock.fif_week_low}}</strong></td><td class="muted">EPS:</td><td><strong>{{=stock.eps}}</strong></td>
+        </tr>
+    </table>
+    {{=LOAD('default','chart.load', ajax=True, vars={'stock':stock.symbol,'timespan':timespan})}}
+</div>
+<br />
+{{if auth.user:}}
+    <span class="label label-inverse">What's your insider opinion?</span>
+    {{=form}}
+{{else:}}
+    <span class="label label-important">Please login to Post your comments.</span>
+{{pass}}

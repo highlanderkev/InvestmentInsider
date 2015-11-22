@@ -1,0 +1,47 @@
+{{if posts:}}
+    {{for x, post in enumerate(posts):}}
+        {{if x == max_posts:}}
+            <center>
+                <a type="button" class="btn btn-small btn-danger" data-toggle="collapse" data-target="#morepost">More Posts..</a>
+            </center>
+            <hr />
+            <div id="morepost" class="collapse in">
+                <div class="media">
+                    {{=A(TAG.i(_class="icon icon-user"), post.author.first_name + ' ' + post.author.last_name, _href=URL('default','userpage.html', args=[post.author.id]))}}
+                    <div class="media-body">
+                        {{if post.link and len(post.link):}}
+                            <i class="icon icon-globe"></i> <a href="{{=post.link}}" target="_blank">{{=post.link}}</a><br />
+                        {{pass}}
+                    </div>
+                    <blockquote>
+                        {{=post.body}}
+                    </blockquote>
+                </div>
+            <center>
+                {{=LOAD('default','vote.load', ajax=True, args=[post.id, 0])}}
+            </center>
+         {{else:}}
+            <div class="media">
+                {{=A(TAG.i(_class="icon icon-user"), post.author.first_name + ' ' + post.author.last_name, _href=URL('default','userpage.html', args=[post.author.id]))}}
+                <div class="media-body">
+                        {{if post.link and len(post.link):}}
+                             <i class="icon icon-globe"></i> <a href="{{=post.link}}" target="_blank">{{=post.link}}</a><br />
+                        {{pass}}
+                </div>
+                <blockquote>
+                    {{=post.body}}
+                </blockquote>
+                <center>
+                    {{=LOAD('default','vote.load', ajax=True, args=[post.id, 0])}}
+                </center>
+            </div>
+        {{pass}}
+    {{pass}}
+    <a href="#">Back to top</a>
+    </div>
+{{else:}}
+<h5><em>Odd, No {{=outlook}} Opinions yet.</em></h5>
+{{pass}}
+<script>
+      $(".collapse").collapse()
+</script>

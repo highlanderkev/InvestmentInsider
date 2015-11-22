@@ -1,0 +1,13 @@
+{{if sortedcount and len(sortedcount):}}
+{{for k,v in sortedcount.items():}}
+<ol>
+{{for stock in v:}}
+    <li>
+        {{=A(T(stock[0]), _href=URL('default','trending_stocks.load', vars={'stock':stock[0]}), _class="btn btn-info")}}
+        Posts: <span class="badge">{{=stock[1]}}</span>
+    </li>
+    <br />
+{{pass}}
+</ol>
+{{pass}}
+{{pass}}

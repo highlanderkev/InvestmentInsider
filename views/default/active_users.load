@@ -1,0 +1,13 @@
+{{if sortedcount and len(sortedcount):}}
+{{for k,v in sortedcount.items():}}
+<ol>
+    {{for user in v:}}
+    <li>
+        {{=A(TAG.i(_class="icon icon-user"), ' ' + user[0]['first_name'] + ' ' + user[0]['last_name'], _href=URL('default','userpage.html', args=[user[0]['id']]), _class="btn btn-primary")}}
+        Posts: <span class="badge">{{=user[1]}}</span>
+    </li>
+    <br />
+    {{pass}}
+</ol>
+{{pass}}
+{{pass}}

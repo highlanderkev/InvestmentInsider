@@ -1,0 +1,15 @@
+<center>
+<iframe src='{{=url}}' width="515" height="220" scrolling=no seamless>
+Sorry, you current browser does not support iframes.
+</iframe>
+<div class="btn-group">
+{{=A(T('1d'), _href=URL('default','chart.load', vars={'stock':stocksymbol,'timespan':'1d'}), _class='btn btn-mini', cid=request.cid)}}
+{{=A(T('5d'), _href=URL('default','chart.load', vars={'stock':stocksymbol,'timespan':'5d'}), _class='btn btn-mini', cid=request.cid)}}
+{{=A(T('3m'), _href=URL('default','chart.load', vars={'stock':stocksymbol,'timespan':'3m'}), _class='btn btn-mini', cid=request.cid)}}
+{{=A(T('6m'), _href=URL('default','chart.load', vars={'stock':stocksymbol,'timespan':'6m'}), _class='btn btn-mini', cid=request.cid)}}
+{{=A(T('1y'), _href=URL('default','chart.load', vars={'stock':stocksymbol,'timespan':'1y'}), _class='btn btn-mini', cid=request.cid)}}
+{{=A(T('2y'), _href=URL('default','chart.load', vars={'stock':stocksymbol,'timespan':'2y'}), _class='btn btn-mini', cid=request.cid)}}
+{{=A(T('5y'), _href=URL('default','chart.load', vars={'stock':stocksymbol,'timespan':'5y'}), _class='btn btn-mini', cid=request.cid)}}
+{{=A(T('max'), _href=URL('default','chart.load', vars={'stock':stocksymbol,'timespan':'my'}), _class='btn btn-mini', cid=request.cid)}}
+</div>
+</center>
